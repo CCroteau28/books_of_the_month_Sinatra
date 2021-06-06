@@ -22,14 +22,14 @@ class BooksController < ApplicationController
 
     post '/books' do
         @book = Book.create(params[:book])
-    if !params[:genre][:genre].empty?
-        @book.genres << Genres.create(name: params[:genre][:name])
-    if !params[:author][:name].empty?
-        @book.authors << Author.create(params[:author])
-    if !params[:title][:name].empty?
-        @book.titles << Title.create(params[:title])
-    end
-    redirect "books/#{@book.id}"
+        if !params[:genre][:genre].empty?
+            @book.genres << Genres.create(name: params[:genre][:name])
+        elsif !params[:author][:name].empty?
+            @book.authors << Author.create(params[:author])
+        else !params[:title][:name].empty?
+            @book.titles << Title.create(params[:title])
+        end
+        redirect "books/#{@book.id}"
     end
 
     patch '/books/:id' do
@@ -37,9 +37,9 @@ class BooksController < ApplicationController
         @book.update(params[:book])
         if !params[:genre][:genre].empty?
             @book.genre << Genre.create(name: params[:genre][:name])
-        if !params[:author][:name].empty?
+        elsif !params[:author][:name].empty?
             @book.authors << Author.create(params[:author])
-        if !params[:title][:name].empty?
+        else !params[:title][:name].empty?
             @book.titles << Title.create(params[:title])
         end
         redirect "books/#{@book.id}"

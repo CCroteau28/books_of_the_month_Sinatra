@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_06_02_163613) do
 
-  create_table "artists", force: :cascade do |t|
+  create_table "authors", force: :cascade do |t|
     t.string "name"
   end
 
