@@ -1,0 +1,8 @@
+<h2>Books Of The Month</h2>
+    <% @books.each do |book| %>
+    <li><a href="/books/<%= book.id %>"><%= book.title %></a></li>
+    <%= book.book_month %>
+    <%end%>
+        <br></br>
+    <a class="button" href="/books/new">Edit or Create Books</a>
+    <a class="button" href="/logout">Log Out</a>

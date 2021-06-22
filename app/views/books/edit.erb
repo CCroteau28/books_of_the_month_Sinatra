@@ -1,0 +1,12 @@
+<h2>Edit Book Here</h2>
+
+<form action="/books/<%=@book.id%>" method="POST">
+    <input type="hidden" name="_method" value="patch">
+    <h3>Books Current Information:</h3>
+    <h4>Title: <input type="text" name="book[title]" value="<%=@book.title%>"/></h4>
+    <h4>Author: <input type="text" name="book[author]" value="<%=@book.author%>"/></h4>
+    <h4>Book of the Month: <input type="text" name="book[book_month]" value="<%=@book.book_month%>"/></h4>
+    <h4>Genre: <input type="text" name="book[genre]" value="<%=@book.genre%>"/></h4>
+
+    <input type="submit" id="submit" value="Update Book"/>
+</form>

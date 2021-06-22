@@ -1,83 +1,10 @@
-books_list = {
-    "Instructions For Dancing" => { 
-    :popular => "June" 
-    }, 
-    "Skye Falling" => {  
-    :popular => "June" 
-    },
-    "HALF SICK of SHADOWS" => {  
-    :popular => "June" 
-    },
-    "The Maidens" => {  
-    :popular => "June" 
-    },
-    "Malibu Rising" => {  
-    :popular => "June" 
-    },
-    "Things We Lost To The Water" => {
-    :popular => "May"
-    },
-    "How Lucky" => {
-    :popular => "May"
-    },
-    "The Last Thing He Told Me" => {
-    :popular => "May"
-    },
-    "Imposter Syndrome" => {
-    :popular => "May"
-    },
-    "Ariadne" => {
-    :popular => "May"
-    }
-}
-
-books_list.each do |name, book_hash|
-    b = Book.new
-    b.name = name
-    book_hash.each do |attribute, value|
-        b[attribute] = value
-    end
-    b.save
-end
-
-author_list = {
-    "Nicola Yoon" => {
-    },
-    "Mia Mckenzie" => {
-    },
-    "Laura Sebastian" => {
-    },
-    "Alex Michaelides" => {
-    },
-    "Taylor Jenkins Reid" => {
-    },
-    "Eric Nguyen" => {
-    },
-    "Will Leitch" => {
-    },
-    "Laura Dave" => {
-    },
-    "Kathy Wang" => {
-    },
-    "Jennifer Saint" => {
-    }
-}
-
-author_list.each do |name, author_hash|
-    b = Author.new
-    b.name = name
-    b.save
-end
-
-genre_list = {
-    "Young Adult" => {
-    },
-    "Contemporary Fiction" {
-    },
-    "Fantasy" => {
-    },
-    "Thriller" => {
-    },
-    "Historical Fiction" => {
-    }
-}
+Book.find_or_create_by(title: "Instructions For Dancing", author: "Nicola Yoon", description: "Girl Finds Love", popular: true, book_month: "June", genre: "Young Adult")
+Book.find_or_create_by(title: "Skye Falling", author: "Mia Mckenzie", description: "Girl learning to reflect on life and what truly matters", popular: true, book_month: "June", genre: "Contemporary Fiction")
+Book.find_or_create_by(title: "Half Sick of Shadows", author: "Laura Sebastian", description: "A feminist retelling of Arthurian legend", popular: true, book_month: "June", genre: "Fantasy")
+Book.find_or_create_by(title: "The Maidens", author: "Alex Michaelides", description: "A tale of murder, myth, and the horror lurking beneath the ivory tower", popular: true, book_month: "June", genre: "Thriller")
+Book.find_or_create_by(title: "Malibu Rising", author: "Taylor Jenkins Reid", description: "A novel about the infamous Riva siblings", popular: true, book_month: "June", genre: "Historical Fiction")
+Book.find_or_create_by(title: "Things We Lost To The Water", author: "Eric Nguyen", description: "A multigenerational saga about a family's attempt, in an adopted home, to weather the storms confronting them", popular: true, book_month: "May", genre: "Historical Fiction")
+Book.find_or_create_by(title: "How Lucky", author: "Will Leitch", description: "Story about being a witness to a crime and of a hero hiding in plain sight", popular: true, book_month: "May", genre: "Contemporary Fiction")
+Book.find_or_create_by(title: "The Last Thing He Told Me", author: "Laura Dave", description: "A story about a new wife and stepmother who must unravel the mystery of what was left behing when her husband dissappears", popular: true, book_month: "May", genre: "Thriller")
+Book.find_or_create_by(title: "Imposter Syndrome", author: "Kathy Wang", description: "When big brother turns into big sister", popular: true, book_month: "May", genre: "Contemporary Fiction")
+Book.find_or_create_by(title: "Ariadne", author: "Jennifer Saint", description: "A story about a Princess and a riveting tale of love and betrayal", popular: true, book_month: "May", genre: "Fantasy")
