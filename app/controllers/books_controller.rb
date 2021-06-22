@@ -1,13 +1,23 @@
+require './config/environment'
+
 class BooksController < ApplicationController
     
+    get '/' do
+        redirect '/login'
+    end
+
     get '/books' do
+        if logged_in?
         @books = Book.all
-        erb :'books/index'
+        # binding.pry
+        erb :'/books/index'
+        else
+            redirect '/login'
+        end
     end
 
     get '/books/new' do
-        @genres = Genre.all
-        erb :'books/new'
+        erb :'/books/new'
     end
 
     get '/books/:id' do
@@ -20,34 +30,23 @@ class BooksController < ApplicationController
         erb :'books/edit'
     end
 
-    post '/books' do
-        @book = Book.create(params[:book])
-        if !params[:genre][:genre].empty?
-            @book.genres << Genres.create(name: params[:genre][:name])
-        elsif !params[:author][:name].empty?
-            @book.authors << Author.create(params[:author])
-        else !params[:title][:name].empty?
-            @book.titles << Title.create(params[:title])
-        end
-        redirect "books/#{@book.id}"
+     post '/books' do
+        @book = Book.new(params)
+        @book.user_id = session[:user_id]
+        @book.save
+        # binding.pry
+	    redirect "books/#{@book.id}"
     end
 
     patch '/books/:id' do
-        @book = Book.find_by_id(params[:id])
+        @book = Book.find(params[:id])
         @book.update(params[:book])
-        if !params[:genre][:genre].empty?
-            @book.genre << Genre.create(name: params[:genre][:name])
-        elsif !params[:author][:name].empty?
-            @book.authors << Author.create(params[:author])
-        else !params[:title][:name].empty?
-            @book.titles << Title.create(params[:title])
-        end
         redirect "books/#{@book.id}"
     end
 
     delete '/books/:id' do
-        @book = Book.find(params[:id])
+        @book = Book.find_by_id(params[:id])
         @book.destroy
-        redirect :'/books'
+    redirect :'/books'
     end
 end
