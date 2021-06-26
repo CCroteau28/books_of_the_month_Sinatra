@@ -34,15 +34,13 @@ end
       !!session[:user_id]
     end
 
-    def login(username, password)
-      session[:username] = username
-      session[:password] = password
-      if user = User.find_by(:username => username)
-        session[:username] = user.username
-      else
-        redirect '/login'
-      end
-    end
+    # def login(username, password)
+    #   if user = User.find_by(session[:user_id])
+    #     session[:usernam
+    #   else
+    #     redirect '/login'
+    #   end
+    # end
 
     def logout!
       session.clear

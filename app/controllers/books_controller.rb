@@ -9,7 +9,6 @@ class BooksController < ApplicationController
     get '/books' do
         if logged_in?
         @books = Book.all
-        # binding.pry
         erb :'/books/index'
         else
             redirect '/login'
@@ -26,15 +25,19 @@ class BooksController < ApplicationController
     end
 
     get '/books/:id/edit' do
-        @book = Book.find(params[:id])
-        erb :'books/edit'
+        @book = Book.find_by(:id => params[:id])
+        @user = current_user.books.find_by(:id => params[:id])
+        if current_user == @book.user
+         erb :'books/edit'
+        else
+            erb '/failure'
+        end
     end
 
      post '/books' do
         @book = Book.new(params)
         @book.user_id = session[:user_id]
         @book.save
-        # binding.pry
 	    redirect "books/#{@book.id}"
     end
 
